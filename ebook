@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>eBook Premium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: white;
+      background: url('https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      text-align: center;
+      margin-top: 60px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      color: #ddd;
+    }
+
+    .mockup {
+      margin: 40px auto;
+      text-align: center;
+      animation: slideUp 1.4s ease-in-out;
+    }
+
+    .mockup img {
+      max-width: 200px;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .cta {
+      text-align: center;
+      margin: 40px 0;
+      animation: fadeIn 1.8s ease-in-out;
+    }
+
+    .cta a {
+      background-color: #00bcd4;
+      color: white;
+      padding: 15px 35px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: 0.3s ease;
+    }
+
+    .cta a:hover {
+      background-color: #0097a7;
+    }
+
+    .timer {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: #ffeb3b;
+      font-weight: bold;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .pages {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 40px auto;
+      flex-wrap: wrap;
+      animation: fadeIn 2.4s ease-in-out;
+    }
+
+    .pages a {
+      color: #ddd;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .pages a:hover {
+      text-decoration: underline;
+    }
+
+    .contact {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      max-width: 500px;
+      margin: 0 auto;
+      border-radius: 10px;
+    }
+
+    .contact h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .contact input,
+    .contact textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .contact button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background-color: #00bcd4;
+      color: white;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .contact button:hover {
+      background-color: #0097a7;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-top: 40px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="header">
+      <h1>🚀 Ton eBook de Réussite</h1>
+      <p>Transforme ta vie avec ce guide exclusif</p>
+    </div>
+
+    <div class="mockup">
+      <img src="https://cdn.pixabay.com/photo/2016/10/28/00/45/book-1771936_1280.png" alt="Mockup eBook">
+    </div>
+
+    <div class="timer" id="countdown">Offre spéciale se termine dans : --:--:--</div>
+
+    <div class="cta">
+      <a href="https://mael.ebook.com" target="_blank">📥 Télécharger l’eBook</a>
+    </div>
+
+    <div class="pages">
+      <a href="#">À propos</a>
+      <a href="#">Témoignages</a>
+      <a href="#">FAQ</a>
+    </div>
+
+    <div class="contact">
+      <h2>📬 Contacte-nous</h2>
+      <form action="mael.lebras22@gmail.com" method="post" enctype="text/plain">
+        <input type="text" name="Nom" placeholder="Votre nom" required />
+        <input type="email" name="Email" placeholder="Votre email" required />
+        <textarea name="Message" rows="5" placeholder="Votre message" required></textarea>
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
+
+    <footer>
+      &copy; 2025 Mon eBook Marketing. Tous droits réservés.
+    </footer>
+  </div>
+
+  <script>
+    // Compteur d'offre limitée (ex: 24h)
+    const countdown = document.getElementById('countdown');
+    const target = new Date().getTime() + 24 * 60 * 60 * 1000;
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = target - now;
+
+      if (distance < 0) {
+        countdown.innerHTML = "L'offre a expiré !";
+        return;
+      }
+
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `Offre spéciale se termine dans : ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
